@@ -1,0 +1,23 @@
+\subsection{Simulation initialization}
+
+During initialization the input file is opened and the main simulation
+parameters are read (particles per meter and number of particles).
+Then, other parameters depending on them are computed.
+
+Those parameters include:
+\begin{itemize}
+\item The \textmark{smoothing length} ($h$).
+\item The \textmark{particle mass} ($m$).
+\item The \textmark{density coefficient} ($k_d$).
+\item The \textmark{pressure coefficient} ($k_p$).
+\item The \textmark{viscosity coefficient} ($k_v$).
+\item The \textmark{grid size vector} ($\vec{n} = (n_x, n_y, n_z)$).
+\item The \textmark{grid block size} ($\vec{\Delta} = (\Delta_x, \Delta_y,
+\Delta_z)$).
+\end{itemize}
+
+The information for each particle is read from the input file. Particles will be
+assigned an integer numeric identifer starting at \cppid{0}.
+
+Once a particle has been read, its corresponding block in the grid determined
+and the particle is added to the set of particles in that block. 

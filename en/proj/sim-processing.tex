@@ -1,0 +1,23 @@
+\subsection{Simulation processing}
+
+The simulation processing stage performs computations on all particles in the
+simulation for every time step. Consequently this stage is repeated as many
+times as time steps are specified.
+
+For every time step the following sub-stages are executed:
+
+\begin{enumerate}
+
+\item Reposition each particle in the grid
+\item Compute forces on each particle.
+\item Process collsions.
+\item Move particles.
+\item Process boundaries.
+
+\end{enumerate}
+
+\input{en/proj/stage-reposition}
+\input{en/proj/stage-forces}
+\input{en/proj/stage-collisions}
+\input{en/proj/stage-move}
+\input{en/proj/stage-boundaries}

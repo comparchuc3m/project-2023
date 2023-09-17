@@ -1,0 +1,34 @@
+\subsection{Simulation parameters}
+
+A number of parameters depend on the amount of particles per meter
+(\cppid{ppm}).
+
+The particle mass $m$ depends on the density $\rho$ and the amount of particles
+per meter (\cppid{ppm}).
+
+\[
+m = \rho \cdot ppm^3
+\]
+
+Another relevant parameter is the \textmark{smoothing length} ($h$), which
+depends on the \textmark{radius multiplier} ($r$) and amount of particles per
+meter.
+
+\[
+h = \frac{r}{ppm}
+\]
+
+Three coefficients are used in the simulation: the density coefficient ($k_d$), the
+pressure coefficient ($k_p$) and the viscosity coefficient ($k_v$):
+
+\[
+k_d = \frac{315}{64 \cdot \pi \cdot h^9} \cdot m
+\]
+
+\[
+k_p = \frac{15}{\pi \cdot h^6} \cdot m
+\]
+
+\[
+k_v = \frac{45}{\pi \cdot h^6} \cdot \mu \cdot m
+\]

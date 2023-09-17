@@ -1,0 +1,98 @@
+\subsubsection{Box boundaries interactions}
+
+In this stage, collisions of particles with box boundaries are considered.
+Given that indices for a grid block are $c_x$, $c_y$ and $c_z$, the following
+options are considered:
+
+\begin{itemize}
+\item $c_x=0$
+\item $c_x=n_x-1$
+\item $c_y=0$
+\item $c_y=n_y-1$
+\item $c_z=0$
+\item $c_z=n_z-1$
+\end{itemize}
+
+\subparagraph{Collisions with x-axis bounds}
+
+When $c_x$ is fixed, for any combination of $c_y$ and $c_z$ all particles are
+processed. 
+
+\[
+d_x =
+\begin{cases}
+  \vec{p}_x -x_{min}  & \text{if } c_x = 0\\
+  x_{max} - \vec{p}_x & \text{if } c_x = n_x - 1\\
+\end{cases}
+\]
+
+Only when $d_x$ is negative there is a collision. In such case, $p_x$, $v_x$ 
+and $hv_x$ shall be updated.
+
+\[
+\begin{split}
+&p_x = 
+  \begin{cases}
+    x_{min} - d_x & \text{if } c_x = 0\\
+    x_{max} + d_x & \text{if } c_x = n_x -1\\
+  \end{cases}\\
+&v_x = -v_x\\
+&hv_x = -hv_x\\
+\end{split}
+\]
+
+\subparagraph{Collisions with y-axis bounds}
+
+When $c_y$ is fixed, for any combination of $c_x$ and $c_z$ all particles are
+processed. 
+
+\[
+d_y =
+\begin{cases}
+  \vec{p}_y - y_{min}  & \text{if } c_y = 0\\
+  y_{max} - \vec{p}_y & \text{if } c_y = n_y - 1\\
+\end{cases}
+\]
+
+Only when $d_y$ is negative there is a collision. In such case, $p_y$, $v_y$ 
+and $hv_y$ shall be updated.
+
+\[
+\begin{split}
+&p_y = 
+  \begin{cases}
+    y_{min} - d_y & \text{if } c_y = 0\\
+    y_{max} + d_y & \text{if } c_y = n_y -1\\
+  \end{cases}\\
+&v_y = -v_y\\
+&hv_y = -hv_y\\
+\end{split}
+\]
+
+\subparagraph{Collisions with z-axis bounds}
+
+When $c_z$ is fixed, for any combination of $c_x$ and $c_y$ all particles are
+processed. 
+
+\[
+d_z =
+\begin{cases}
+  \vec{p}_z - z_{min}  & \text{if } c_z = 0\\
+  z_{max} - \vec{p}_z & \text{if } c_z = n_z - 1\\
+\end{cases}
+\]
+
+Only when $d_z$ is negative there is a collision. In such case, $p_z$, $v_z$ 
+and $hv_z$ shall be updated.
+
+\[
+\begin{split}
+&p_z = 
+  \begin{cases}
+    z_{min} - d_z & \text{if } c_z = 0\\
+    z_{max} + d_z & \text{if } c_z = n_z -1\\
+  \end{cases}\\
+&v_z = -v_z\\
+&hv_z = -hv_z\\
+\end{split}
+\]

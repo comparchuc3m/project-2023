@@ -1,0 +1,112 @@
+\subsubsection{Particles collisions}
+
+In this stage, possible collisions of particles with box walls are considered,
+in order to update vector acceleration. 
+Given that indices for a grid block are $c_x$, $c_y$ and $c_z$, the following
+options are considered:
+
+\begin{itemize}
+\item $c_x=0$
+\item $c_x=n_x-1$
+\item $c_y=0$
+\item $c_y=n_y-1$
+\item $c_z=0$
+\item $c_z=n_z-1$
+\end{itemize}
+
+\subparagraph{Collisions with x-axis bounds}
+
+When $c_x$ is fixed, for any combination of $c_y$ and $c_z$ all particles are
+processed. First $x$ coordinate of the new position is computed.
+
+\[
+x = (\vec{p}_x + \overrightarrow{hv}_x) \cdot \Delta t \\
+\]
+
+Then, the difference to the bound is compared to the \textmark{particle size} ($d_p$).
+
+\[
+\Delta x = 
+\begin{cases}
+d_p - (x - x_{min}) & \text{if } c_x = 0\\
+d_p - (x_{max} - x) & \text{if } c_x = n_x -1\\
+\end{cases}
+\]
+
+If $\Delta x$ is greater than $10^{-10}$, the acceleration is updated,
+considering the \textmark{stiffness collisions} ($c_s$) and \textmark{damping}
+($d_v$).
+
+\[
+a_x = 
+\begin{cases}
+  a_x + c_s \cdot \Delta x - d_v \cdot v_x & \text{if  } c_x = 0\\
+  a_x - c_s \cdot \Delta x + d_v \cdot v_x & \text{if  } c_x = n_x-1\\
+\end{cases}
+\]
+
+\subparagraph{Collisions with y-axis bounds}
+
+When $c_y$ is fiyed, for any combination of $c_x$ and $c_z$ all particles are
+processed. First $y$ coordinate of the new position is computed.
+
+\[
+y = (\vec{p}_y + \overrightarrow{hv}_y) \cdot \Delta t \\
+\]
+
+Then, the difference to the bound is compared to the \textmark{particle size}
+($d_p$).
+
+\[
+\Delta y = 
+\begin{cases}
+d_p - (y - y_{min}) & \text{if } c_y = 0\\
+d_p - (y_{may} - y) & \text{if } c_y = n_y -1\\
+\end{cases}
+\]
+
+If $\Delta y$ is greater than $10^{-10}$, the acceleration is updated,
+considering the \textmark{stiffness collisions} ($c_s$) and \textmark{damping}
+($d_v$).
+
+\[
+a_y = 
+\begin{cases}
+  a_y + c_s \cdot \Delta y - d_v \cdot v_y & \text{if  } c_y = 0\\
+  a_y - c_s \cdot \Delta y + d_v \cdot v_y & \text{if  } c_y = n_y-1\\
+\end{cases}
+\]
+
+\subparagraph{Collisions with z-axis bounds}
+
+When $c_z$ is fized, for any combination of $c_x$ and $c_y$ all particles are
+processed. First $z$ coordinate of the new position is computed.
+
+\[
+z = (\vec{p}_z + \overrightarrow{hv}_z) \cdot \Delta t \\
+\]
+
+Then, the difference to the bound is compared to the \textmark{particle size}
+($d_p$).
+
+\[
+\Delta z = 
+\begin{cases}
+d_p - (z - z_{min}) & \text{if } c_z = 0\\
+d_p - (z_{maz} - z) & \text{if } c_z = n_z -1\\
+\end{cases}
+\]
+
+If $\Delta z$ is greater than $10^{-10}$, the acceleration is updated,
+considering the \textmark{stiffness collisions} ($c_s$) and \textmark{damping}
+($d_v$).
+
+\[
+a_z = 
+\begin{cases}
+  a_z + c_s \cdot \Delta z - d_v \cdot v_z & \text{if  } c_z = 0\\
+  a_z - c_s \cdot \Delta z + d_v \cdot v_z & \text{if  } c_z = n_z-1\\
+\end{cases}
+\]
+
+

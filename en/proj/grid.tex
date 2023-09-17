@@ -1,0 +1,55 @@
+\subsection{The simulation grid}
+
+To avoid excesive computations the whole simulation box is divided in smaller
+blocks. Note that the simulation box is a rectangular cuboid with different
+lenghts in each of the three dimensions. 
+
+To determine the number of blocks in each dimension the lenght int that
+dimensions is divided by parameter $h$.
+
+\[
+\begin{split}
+n_x = \lfloor \frac{x_{max}- x_{min}}{h} \rfloor\\
+n_y = \lfloor \frac{y_{max}- y_{min}}{h} \rfloor\\
+n_z = \lfloor \frac{z_{max}- z_{min}}{h} \rfloor
+\end{split}
+\]
+
+The size of grid block ($\Delta_x, \Delta_y, \Delta_z$) is then given by
+\[
+\begin{split}
+\Delta_x = \frac{x_{max} - x_{min}}{n_x}\\
+\Delta_y = \frac{y_{max} - y_{min}}{n_y}\\
+\Delta_z = \frac{z_{max} - z_{min}}{n_z}\\
+\end{split}
+\] 
+
+Given a particle with position vector $\vec{p}$ the block indices are computed
+by considering its distance in each dimension to the box minimum coordinate
+and the size of a grid bloc ($vec{Delta}$.
+
+\[
+\begin{split}
+i = \frac{p_x - x_{min}}{\Delta_x}\\
+j = \frac{p_y - y_{min}}{\Delta_y}\\
+k = \frac{p_z - z_{min}}{\Delta_z}\\
+\end{split}
+\]
+
+Note that for each dimensions the corresponding index value cannot be $0$ or
+greater or equal than the corresponding number of blocks in that dimension:
+
+\[
+\begin{split}
+i \in [0, n_x-1]\\
+j \in [0, n_x-1]\\
+k \in [0, n_x-1]\\
+\end{split}
+\]
+
+If an index value is outside its corresponding range, it shall be adjusted to
+the corresponding limit.
+
+The key role of simulation blocks is that only particles in the same block or
+contiguous blocks will be computed. In general, for any given block there are
+26 contiguous blocks.

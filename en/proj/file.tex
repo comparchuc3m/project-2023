@@ -1,0 +1,86 @@
+\subsection{File format}
+
+A fluid file contains all the information of fluid state at a given point in
+time. Files are stored in binary format with the following requirements:
+
+\begin{itemize}
+\item \textmark{Integer}: All integer values use 4 bytes.
+\item \textmark{Floating-point}: All floating point values use IEEE-754 single
+precision representation.
+\end{itemize}
+
+A file is composed of a \textgood{header} and a \textgood{body}. The header
+includes general information while the body contains information for each
+particle in the fluid.
+
+The header contains the fields as specified in Table~\ref{tab:file-header}.
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Field & Type & Description\\
+\hline
+\hline
+
+\textgood{ppm} & \textemph{Floating-Point} &
+Particles per meter\\
+\hline
+
+\textgood{np} & \textemph{Integer} &
+Number of particles\\
+\hline
+\end{tabular}
+\end{center}
+\label{tab:file-header}
+\caption{Fields in the file header.}
+\end{table}
+
+Note that the \textmark{number of particles} specifies how many particles are
+stored in the rest of the file. The information and format for each particle in
+the file \textgood{body} is specified in Table~\ref{tab:file-body}.
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Field & Type & Description\\
+\hline
+\hline
+
+\textgood{px} & \textemph{Floating-Point} &
+Position x-coordinate.\\
+\hline
+\textgood{py} & \textemph{Floating-Point} &
+Position y-coordinate.\\
+\hline
+\textgood{pz} & \textemph{Floating-Point} &
+Position z-coordinate.\\
+\hline
+
+\textgood{hvx} & \textemph{Floating-Point} &
+Vector hv x-coordinate.\\
+\hline
+\textgood{hvy} & \textemph{Floating-Point} &
+Vector hv y-coordinate.\\
+\hline
+\textgood{hvz} & \textemph{Floating-Point} &
+Vector hv z-coordinate.\\
+\hline
+
+\textgood{vx} & \textemph{Floating-Point} &
+Acceleration x-coordinate.\\
+\hline
+\textgood{vy} & \textemph{Floating-Point} &
+Acceleration y-coordinate.\\
+\hline
+\textgood{vz} & \textemph{Floating-Point} &
+Acceleration z-coordinate.\\
+\hline
+
+\hline
+\end{tabular}
+\end{center}
+\label{tab:file-body}
+\caption{Fields in the file body for each particle.}
+\end{table}

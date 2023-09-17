@@ -1,0 +1,70 @@
+\subsection{Simulation constants}
+
+Table~\ref{tab:constants} shows the constants used in the simulation.
+
+\begin{table}[htb!]
+
+\begin{center}
+\begin{tabular}{|l|l|r|}
+
+\hline
+\textbf{Constant} & \textbf{Description} & \textbf{Value}\\
+\hline
+\hline
+
+r & \textgood{Radius multiplier} & 1.695\\
+\hline
+
+$\rho$ & \textgood{Fluid density} & $10^3$\\
+\hline
+
+$p_s$ & \textgood{Stiffness pressure} & 3.0\\
+\hline 
+
+$s_c$ & \textgood{Stiffness collisions} & $3 \cdot 10^4$\\
+\hline
+
+$d_v$ & \textgood{Damping} & 128.0\\
+\hline
+
+$\mu$ & \textgood{Viscosity} & 0.4\\
+\hline
+
+$d_p$ & \textgood{Particle size} & $2 \cdot 10^{-4}$\\
+\hline
+
+$\Delta t $& \textgood{Time step} & $10^{-3}$\\
+\hline
+
+\end{tabular}
+\end{center}
+
+\label{tab:constants}
+\caption{Simulation scalar constants.}
+\end{table}
+
+In addition, Table~\ref{tab:vec-constants} shall be used in the simulation.
+
+\begin{table}[htb!]
+
+\begin{tabular}{|l|l|r|r|r|}
+
+\hline
+\textbf{Constant} & \textbf{Description} & \cppid{x} & \cppid{y} & \cppid{z}\\
+\hline
+\hline
+
+$\vec{g}$ & \textgood{External acceleration} & 0.0 & 9.8 & 0.0\\
+\hline
+
+$b_{min}$ \textgood{Box upper bound} & 0.065 & 0.1 & 0.065\\
+\hline
+
+$b_{max}$ \textgood{Box lower bound} & -0.065 & -0.08 & -0.065\\
+\hline 
+
+\end{tabular}
+
+\label{tab:vec-constants}
+\caption{Simulation vector constants.}
+\end{table}

@@ -1,0 +1,71 @@
+\subsubsection{Forces computation}
+
+The following steps are performed
+
+\begin{enumerate}
+\item Initialize forces computation.
+\item Densities increase.
+\item Density transformation.
+\item Acceleration transfer.
+\end{enumerate}
+
+\paragraph{Initialize forces computation}.
+During this step an initial value is given to the density ($\delta_i$) and the
+vector acceleration ($\vec{a_i}$) for each particle.
+
+The density is initially set to \cppid{0}.
+\[
+\delta_i = 0
+\]
+
+The vector acceleration is initially set to the \textgood{external acceleration}.
+
+\[
+\vec{a} = \vec{g}
+\]
+
+\paragraph{Densities increase}
+In this step, for every block in the simulation grid all contiguous blocks as
+well as the current block are considered. For every pair of particles $i$ and
+$j$, the densities are increased.
+
+\[
+\Delta \rho_{ij} = 
+    \begin{cases}
+      (h^2 - |\vec{p_i} - \vec{p_j}|^2)^3 & 
+          \text{if  } |\vec{p_i} - \vec{p_j}|^2 < h^2\\
+      0 & 
+          \text{if  } |\vec{p_i} - \vec{p_j}|^2 \geq h^2\\
+    \end{cases}
+\]
+
+\paragraph{Density transformation}
+For every computed density, a linear transformation is performed.
+
+\[
+\rho_i = (\rho_i + h^6) \cdot k_d
+\]
+
+\paragraph{Acceleration transfer}
+In this step, for every block in the simulation grid all contiguous blocks as
+well as the current block are considered. For every pair of particles $i$ and
+$j$, distances are evaluated
+
+\[
+\begin{split}
+\vec{d_{ij}} = \vec{p_i} - \vec{p_j} \\
+d_{ij}^2 = | d_{ij} |^2
+\end{split}
+\]
+
+If the two particles are near enough ($d_{ij}^2 < h^2$) acceleration is updated.
+
+\[
+\begin{split}
+& dist_{ij} = \sqrt{\max(d_{ij}^2, 10^{-12})} \\
+& \Delta \vec{a} = \vec{d_{ij}} \cdot k_p \cdot \frac{(h - dist_{ij})^2}{dist_{ij}^2} \cdot
+(d_i + d_j - \rho) \\
+&a_i = a_i + \Delta \vec{a}\\
+&a_j = a_j - \Delta \vec{a}
+\end{split}
+\]
