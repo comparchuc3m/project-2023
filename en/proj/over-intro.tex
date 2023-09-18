@@ -12,24 +12,10 @@ fluid.
 the fluid.
 \end{itemize}
 
-Different versions of the application will be developed. The following variation
-points shall be considered:
+Two versions of the application shall be developed to evaluate the impact of the
+selected data structure: structures of arrays (\textmark{SOA}) and array of
+structures (\textmark{AOS}).
 
-\begin{itemize}
-
-\item \textbf{Precision}: While input and output files will always use
-single-precision floating point, internal computations may use either single or
-double precision.
-
-\item \textbf{Structure}: Data structures may use either a \emph{structure of
-arrays} or an \emph{array of structures} approach.
-
-\end{itemize}
-
-Consequently 4 versions of the application may be used:
-\begin{enumerate}
-\item \textmark{soaf}: Structures of arrays and single precision (\cppkey{float}).
-\item \textmark{soad}: Structures of arrays and double precision (\cppkey{double}).
-\item \textmark{aosf}: Arrays of structures and single precision (\cppkey{float}).
-\item \textmark{aosd}: Arrays of structures and double precision (\cppkey{double}).
-\end{enumerate}
+\textbad{IMPORTANT}: Although input and output files contain information using
+single precision floating point numbers, all internal computations shall use
+double precision floating point numbers.

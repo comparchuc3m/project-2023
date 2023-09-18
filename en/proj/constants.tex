@@ -1,8 +1,9 @@
+\clearpage
 \subsection{Simulation constants}
 
 Table~\ref{tab:constants} shows the constants used in the simulation.
 
-\begin{table}[htb!]
+\begin{table}[hbt!]
 
 \begin{center}
 \begin{tabular}{|l|l|r|}
@@ -44,8 +45,14 @@ $\Delta t $& \textgood{Time step} & $10^{-3}$\\
 \end{table}
 
 In addition, Table~\ref{tab:vec-constants} shows vector constants to be used in the simulation.
+Note that the \textgood{external acceleration} ($\vec{g}$) is the gravity acceleration which in
+this example acts across the y-axis. The \textgood{box upper bound} ($\vec{b}_{max}$) 
+and \textgood{box lower bound} ($\vec{b}_{min}$) define two opposite vertex in a rectangular
+cuboid. This is the closed domain where the simulation happens. $\vec{b}_{max}$ is given
+by vector $(x_{max}, y_{max}, z_{max})$ and $\vec{b}_{min}$ is given by vector
+$(x_{min}, y_{min}, z_{min})$.
 
-\begin{table}[htb!]
+\begin{table}[h]
 
 \begin{center}
 \begin{tabular}{|l|l|r|r|r|}
@@ -58,10 +65,10 @@ In addition, Table~\ref{tab:vec-constants} shows vector constants to be used in 
 $\vec{g}$ & \textgood{External acceleration} & 0.0 & 9.8 & 0.0\\
 \hline
 
-$b_{min}$ & \textgood{Box upper bound} & 0.065 & 0.1 & 0.065\\
+$\vec{b}_{min}$ & \textgood{Box upper bound} & 0.065 & 0.1 & 0.065\\
 \hline
 
-$b_{max}$ & \textgood{Box lower bound} & -0.065 & -0.08 & -0.065\\
+$\vec{b}_{max}$ & \textgood{Box lower bound} & -0.065 & -0.08 & -0.065\\
 \hline 
 
 \end{tabular}
@@ -70,3 +77,8 @@ $b_{max}$ & \textgood{Box lower bound} & -0.065 & -0.08 & -0.065\\
 \caption{Simulation vector constants.}
 \label{tab:vec-constants}
 \end{table}
+
+Note that some mathematical constants (e.g. $\pi$) may be needed. In that 
+case the preferred value shall be the one provided by the C++20 standard 
+library. Please refer to the namespace \cppid{std::numbers} for such constants
+(see \url{https://en.cppreference.com/w/cpp/header/numbers}).
