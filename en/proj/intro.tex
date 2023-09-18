@@ -2,7 +2,7 @@
 
 Fluid flows simulation can be achieved by multiple methods. One of them is
 Smoothed Particle Hydrodynamics (SPH). SPH solves the Navier-Stokes equations
-at time steps. A fluid is modelled as a collection of particles. Those
+at time steps. A fluid is modeled as a collection of particles. Those
 particles have interactions impacting their acceleration, position and velocity.
 
 Only particles at short distance have real interaction. To speedup simulation
@@ -10,10 +10,10 @@ time long distance interactions are discarded. To achieve this the 3D space
 is divided in a grid of blocks and only particles in blocks in the nearby are
 considered.
 
-Simulation includes the folowing steps:
+Simulation includes the following steps:
 \begin{itemize}
 \item Computing the density of the fluid at each particle position.
-\item Computing the impact of grafity int the acceleration of each particle.
+\item Computing the impact of gravity int the acceleration of each particle.
 \item Computing fluid pressure.
 \item Computing fluid viscosity.
 \item Detection of collisions with the walls of the container box.
