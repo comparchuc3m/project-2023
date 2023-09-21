@@ -15,24 +15,24 @@ n_z = \lfloor \frac{z_{max}- z_{min}}{h} \rfloor
 \end{split}
 \]
 
-The size of grid block ($\Delta_x, \Delta_y, \Delta_z$) is then given by
+The size of grid block $\vec{s}$ ($s_x, s_y, s_z$) is then given by
 \[
 \begin{split}
-\Delta_x = \frac{x_{max} - x_{min}}{n_x}\\
-\Delta_y = \frac{y_{max} - y_{min}}{n_y}\\
-\Delta_z = \frac{z_{max} - z_{min}}{n_z}\\
+s_x = \frac{x_{max} - x_{min}}{n_x}\\
+s_y = \frac{y_{max} - y_{min}}{n_y}\\
+s_z = \frac{z_{max} - z_{min}}{n_z}\\
 \end{split}
 \] 
 
 Given a particle with position vector $\vec{p}$ the block indices are computed
 by considering its distance in each dimension to the box minimum coordinate
-and the size of a grid block ($\vec{\Delta}$).
+and the size of a grid block ($\vec{s}$).
 
 \[
 \begin{split}
-i = \frac{p_x - x_{min}}{\Delta_x}\\
-j = \frac{p_y - y_{min}}{\Delta_y}\\
-k = \frac{p_z - z_{min}}{\Delta_z}\\
+i = \frac{p_x - x_{min}}{s_x}\\
+j = \frac{p_y - y_{min}}{s_y}\\
+k = \frac{p_z - z_{min}}{s_z}\\
 \end{split}
 \]
 
@@ -52,4 +52,5 @@ the corresponding limit.
 
 The key role of simulation blocks is that only particles in the same block or
 contiguous blocks will be computed. In general, for any given block there are
-26 contiguous blocks.
+26 contiguous blocks. This number may be lower when the block is in the limits
+of the grid. For example, when $i=j=k=0$, the number of contiguous blocks is 7.

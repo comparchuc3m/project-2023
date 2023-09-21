@@ -11,13 +11,9 @@ multi-threading or parallelism is allowed.
 
 The following versions of the program will be prepared:
 \begin{itemize}
-\item \textmark{soaf}: Structures of arrays with internal computations
-using single precision for floating point.
-\item \textmark{soad}: Structures of arrays with internal computations
+\item \textmark{fluidsoa}: Structures of arrays with internal computations
 using double precision for floating point.
-\item \textmark{aosf}: Arrays of structures with internal computations
-using single precision for floating point.
-\item \textmark{aosd}: Arrays of structures with internal computations
+\item \textmark{fluidaos}: Arrays of structures with internal computations
 using double precision for floating point.
 \end{itemize}
 
@@ -51,17 +47,11 @@ The following components shall be developed:
         When needed components may be generic on the floating point type by using
         templates.
 
-  \item \cppid{soaf}: 
-        Executable program with the \textmark{soaf} version.
+  \item \cppid{fluidsoa}: 
+        Executable program with the \textmark{soa} version.
 
-  \item \cppid{soad}: 
-        Executable program with the \textmark{soad} version.
-
-  \item \cppid{aosf}: 
-        Executable program with the \textmark{aosf} version.
-
-  \item \cppid{aosf}: 
-        Executable program with the \textmark{aosd} version.
+  \item \cppid{fluidaos}: 
+        Executable program with the \textmark{aos} version.
 
 
 \end{itemize}
@@ -96,38 +86,20 @@ It will contain, at least, the following source files:
         Block element for \textmark{AOS} representation.
 \end{itemize}
 
-\paragraph{soaf}: Program with \textmark{soaf} version.
+\paragraph{fluidsoa}: Program with \textmark{soa} version.
 
 It will contain a single source file:
 \begin{itemize}
-  \item \cppid{soaf}: 
+  \item \cppid{fluidsoa.cpp}: 
         It shall only contain a \cppid{main()} function for this version.
         It shall not include any additional function.
 \end{itemize}
 
-\paragraph{soad}: Program with \textmark{soad} version.
+\paragraph{fluidaos}: Program with \textmark{aos} version.
 
 It will contain a single source file:
 \begin{itemize}
-  \item \cppid{soad}: 
-        It shall only contain a \cppid{main()} function for this version.
-        It shall not include any additional function.
-\end{itemize}
-
-\paragraph{aosf}: Program with \textmark{aosf} version.
-
-It will contain a single source file:
-\begin{itemize}
-  \item \cppid{imgaos}: 
-        It shall only contain a \cppid{main()} function for this version.
-        It shall not include any additional function.
-\end{itemize}
-
-\paragraph{aosd}: Program with \textmark{aosd} version.
-
-It will contain a single source file:
-\begin{itemize}
-  \item \cppid{imgsoa}: 
+  \item \cppid{fluidaos.cpp}: 
         It shall only contain a \cppid{main()} function for this version.
         It shall not include any additional function.
 \end{itemize}
@@ -149,19 +121,13 @@ add_compile_options(-Wall -Wextra -Werror -pedantic -pedantic-errors)
 set(CMAKE_CXX_FLAGS_RELEASE "-march=native")
 
 add_library(common file1-common.cpp file2-common.cpp file3-common.cpp)
-add_library(aosf file1-aosf.cpp file2-aosf.cpp)
-add_library(aosd file1-aosd.cpp file2-aosd.cpp)
-add_library(soaf file1-soaf.cpp file2-soaf.cpp)
-add_library(aosd file1-aosd.cpp file2-aosd.cpp)
+add_library(aos file1-aosd.cpp file2-aos.cpp)
+add_library(aos file1-aosd.cpp file2-aos.cpp)
 
-add_executable(aosf aosf.cpp)
-target_link_libraries(aosf common aosf)
-add_executable(aosd aosd.cpp)
-target_link_libraries(aosd common aosd)
-add_executable(soaf soaf.cpp)
-target_link_libraries(soaf common soaf)
-add_executable(soad soad.cpp)
-target_link_libraries(soad common soad)
+add_executable(fluidaos fluidaos.cpp)
+target_link_libraries(fluidaos common fluidaos)
+add_executable(fluidsoa fluidsoa.cpp)
+target_link_libraries(fluidsoa common fluidsoa)
 \end{lstlisting}
 
 This rules are an example. Keep in mind the following:
@@ -172,10 +138,10 @@ This rules are an example. Keep in mind the following:
         that are considered needed (names of choice by designers) and
         which offer common functionality to both versions of the program.
 
-  \item The library \cppkey{aosf} consists of all the \cppid{.cpp} files
+  \item The library \cppkey{aos} consists of all the \cppid{.cpp} files
         that are considered needed (names of choice by designers) and
         which offer functionality which is exclusive of the
-        \textemph{array of structures with floats} implementation.
+        \textemph{array of structures} implementation.
 
   \item The same idea applies to the rest of libraries.
 
