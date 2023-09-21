@@ -12,10 +12,37 @@ Those parameters include:
 \item The \textmark{grid block size} ($\vec{s} = (s_x, s_y, s_z)$).
 \end{itemize}
 
-The information for each particle is read from the input file. Although
-input files use single precision for floating point as soon as a value is 
-read it shall be converted to double precision.
-Particles will be assigned an integer numeric identifier starting at \cppid{0}.
+The information for each particle is read from the input file. Although input
+files use single precision for floating point as soon as a value is read it
+shall be converted to double precision.  Particles will be assigned an integer
+numeric identifier starting at \cppid{0}.
 
 Once a particle has been read, its corresponding block in the grid determined
 and the particle is added to the set of particles in that block. 
+
+If the number of particles found in the file does not match with the parameter
+\textmark{number of partices} (\cppid{np}), an error message shall be generated
+and the program shall exit with error code \cppid{-5}. For example, if the 
+header has the value \cppid{4750} for \cppid{np} but the file contains 
+\cppid{4700} particles, the following message shall be sent to the standard
+error output.
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ aos 2000 init.fld final.fld
+Error: Number of particles mismatch. Header: 4750, Found: 4700.
+\end{lstlisting}
+
+If the file is successfully read the values for the parameters shall be sent
+to the standard output.
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ aos 2000 init.fld final.fld
+Number of particles: 4800
+Particles per meter: 204
+Smoothing length: 0.00830882
+Particle mass: 0.00011779
+Grid size: 15 x 21 x 15
+Number of blocks: 4725
+Block size: 0.00866667 x 0.00857143 x 0.00866667
+\end{lstlisting}
+
