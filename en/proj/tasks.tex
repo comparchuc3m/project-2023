@@ -9,104 +9,67 @@ This task consists of the development of different sequential versions
 of the described application using C++20. Please, note that no use of
 multi-threading or parallelism is allowed.
 
-The following versions of the program will be prepared:
-\begin{itemize}
-\item \textmark{fluidsoa}: Structures of arrays with internal computations
-using double precision for floating point.
-\item \textmark{fluidaos}: Arrays of structures with internal computations
-using double precision for floating point.
-\end{itemize}
-
-The strategies for SOA versus AOS will be as follows:
-
-\begin{itemize}
-  \item \textmark{SOA -- Structure of Arrays}:
-        A grid block will contain one independent array (or vector) for
-        each data item in a particle
-  \item \textmark{AOS -- Array of Structures}:
-        A grid block will contain a single array (or vector) of particle objects.
-\end{itemize}
+To develop the required program teams may consider different alternatives
+as using structures of arrays, arrays of structures or hybrid alternatives
+combining both approaches.
 
 \subsubsection{Components}
 
 The following components shall be developed:
 
 \begin{itemize}
-  \item \cppid{common}: 
-        Library with source files that are common to all versions.
-        When needed components may be generic on the floating point type by using
-        templates.
+  \item \cppid{sim}: 
+        Library with all components used from main program.
 
-  \item \cppid{soa}: 
-        Library with source files that are specific to the \textmark{SOA} version.
-        When needed components may be generic on the floating point type by using
-        templates.
+  \item \cppid{utest}: 
+        Unit tests of all components in library \cppid{sim}.
 
-  \item \cppid{aos}:
-        Library with source files that are specific to the \textmark{AOS} version.
-        When needed components may be generic on the floating point type by using
-        templates.
+  \item \cppid{ftest}:
+        Functional tests of the application.
 
-  \item \cppid{fluidsoa}: 
-        Executable program with the \textmark{soa} version.
-
-  \item \cppid{fluidaos}: 
-        Executable program with the \textmark{aos} version.
-
+  \item \cppid{fluid}: 
+        Executable program with the application.
 
 \end{itemize}
 
-Below, components are described in more detail:
+Below, some components are described in more detail:
 
-\paragraph{common}: Common components:
+\paragraph{sim}: Simulation library components.
 
 It will contain, at least, the following source files:
 \begin{itemize}
-  \item \cppid{progargs.cpp}: 
-        Argument handling for \cppid{main} parameters. 
+  \item \cppid{progargs.hpp, progargs.cpp}: 
+        Argument handling for \cppid{main()} parameters. 
+  \item \cppid{grid.hpp, grid.cpp}: 
+        Grid representation.
+  \item \cppid{block.hpp, block.cpp}: 
+        Block representation.
 \end{itemize}
 
-\paragraph{soa}: Components library for \textmark{SOA}.
+\paragraph{utest}: Unit tests.
 
 It will contain, at least, the following source files:
 \begin{itemize}
-  \item \cppid{gridsoa.cpp}: 
-        Grid representation for \textmark{SOA} representation.
-  \item \cppid{blocksoa.cpp}: 
-        Block element for \textmark{SOA} representation.
+  \item \cppid{progargs\_test.cpp}: 
+        Unit tests for \cppid{progargs}.
+  \item \cppid{grid\_test.cpp}:
+        Unit tests for \cppid{grid}.
+  \item \cppid{block\_test.cpp}:
+        Unit tests for \cppid{block}.
 \end{itemize}
 
-\paragraph{aos}: Components library for \textmark{AOS}.
-
-It will contain, at least, the following source files:
-\begin{itemize}
-  \item \cppid{gridaos.cpp}: 
-        Grid representation for \textmark{AOS} representation.
-  \item \cppid{blockaos.cpp}: 
-        Block element for \textmark{AOS} representation.
-\end{itemize}
-
-\paragraph{fluidsoa}: Program with \textmark{soa} version.
+\paragraph{fluid}: Program with the application.
 
 It will contain a single source file:
 \begin{itemize}
-  \item \cppid{fluidsoa.cpp}: 
-        It shall only contain a \cppid{main()} function for this version.
-        It shall not include any additional function.
-\end{itemize}
-
-\paragraph{fluidaos}: Program with \textmark{aos} version.
-
-It will contain a single source file:
-\begin{itemize}
-  \item \cppid{fluidaos.cpp}: 
-        It shall only contain a \cppid{main()} function for this version.
+  \item \cppid{fluid.cpp}: 
+        It shall only contain a \cppid{main()} function for the application.
         It shall not include any additional function.
 \end{itemize}
 
 \subsubsection{Compiling the project}
 
-All source files must compile without problems and shall no emit no compiler warning.
+All source files must compile without problems and shall not emit any compiler warning.
 A CMake configuration file shall be included with the following options:
 
 \begin{lstlisting}[title={CmakeLists.txt},frame=single]
@@ -120,6 +83,7 @@ add_compile_options(-Wall -Wextra -Werror -pedantic -pedantic-errors)
 
 set(CMAKE_CXX_FLAGS_RELEASE "-march=native")
 
+add_subdirectory(sim)
 add_library(common file1-common.cpp file2-common.cpp file3-common.cpp)
 add_library(aos file1-aosd.cpp file2-aos.cpp)
 add_library(aos file1-aosd.cpp file2-aos.cpp)
@@ -130,35 +94,34 @@ add_executable(fluidsoa fluidsoa.cpp)
 target_link_libraries(fluidsoa common fluidsoa)
 \end{lstlisting}
 
-This rules are an example. Keep in mind the following:
+The CMake configuration file for directory \cppid{sim} shall include the
+following options:
 
-\begin{itemize}
+\begin{lstlisting}[title={Library sim CmakeLists.txt},frame=single]
+add_library(sim file1.cpp file2.cpp file3.cpp)
+target_include_directories(sim PUBLIC ..)
+\end{lstlisting}
 
-  \item The library \cppkey{common} consists of all the \cppid{.cpp} files
-        that are considered needed (names of choice by designers) and
-        which offer common functionality to both versions of the program.
+The CMake configuration file for directory \cppid{fluid} shall include the
+following options:
 
-  \item The library \cppkey{aos} consists of all the \cppid{.cpp} files
-        that are considered needed (names of choice by designers) and
-        which offer functionality which is exclusive of the
-        \textemph{array of structures} implementation.
+\begin{lstlisting}[title={Program fluid CmakeLists.txt},frame=single]
+add_executable(fluid fluid.cpp)
+target_link_libraries(fluid sim)
+target_include_directories(fluid PUBLIC ../common)
+\end{lstlisting}
 
-  \item The same idea applies to the rest of libraries.
-
-\end{itemize}
-
-Note that generic components (with \cppkey{template}) are header only components and
-are not included in any library.
+This rules are an example. 
 
 Keep in mind that all evaluations shall be performed with the compiler optimizations
 enabled with CMake option
 \cppid{-DCMAKE\_BUILD\_TYPE=Release}.
 
-\textbad{Important}: 
+\textbad{IMPORTANT}: 
 The only allowed library is the C++ standard library.
 No external library is allowed.
 
-\textbad{Exception}: The C++ Core Guidelines Support Library (commonly referred as
+\textbad{EXCEPTION}: The C++ Core Guidelines Support Library (commonly referred as
 the \cppid{GSL}) is also allowed. The latest version can be obtained at:
 \url{https://github.com/microsoft/GSL}.
 
@@ -205,9 +168,7 @@ performance.
 
 \subsection{Performance and energy evaluation}
 
-This task consists of a comparative performance evaluation of the 
-different implementation strategies.
-
+This task consists of a performance evaluation of the application.
 To conduct the performance evaluation, the total execution time shall be measured.
 In addition, energy use must be also measured.
 The power use must be derived.

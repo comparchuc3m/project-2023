@@ -12,11 +12,14 @@ considered.
 
 Simulation includes the following steps:
 \begin{itemize}
-\item Computing the density of the fluid at each particle position.
-\item Computing the impact of gravity int the acceleration of each particle.
-\item Computing fluid pressure.
-\item Computing fluid viscosity.
-\item Detection of collisions with the walls of the container box.
-\item Computing collision response.
-\item Determining new position, velocity and acceleration for each particle.
+  \item Reading initial state of the simulation.
+  \item Simulation of particles for each time step or iteration:
+    \begin{itemize}
+      \item Repositioning of particles in the grid.
+      \item Computing forces and accelerations for each particle.
+      \item Processing particle collisions with boundaries.
+      \item Particles movement.
+      \item Reprocessing box boundaries interactions.
+    \end{itemize}
+  \item Writing final state of the simulation.
 \end{itemize}

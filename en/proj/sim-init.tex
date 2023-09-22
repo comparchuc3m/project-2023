@@ -1,6 +1,6 @@
 \subsection{Simulation initialization}
 
-During initialization the input file is opened and the main simulation
+During initialization, the input file is opened and the main simulation
 parameters are read (particles per meter and number of particles).
 Then, other parameters depending on them are computed.
 
@@ -13,11 +13,11 @@ Those parameters include:
 \end{itemize}
 
 The information for each particle is read from the input file. Although input
-files use single precision for floating point as soon as a value is read it
+files use single precision for floating point, as soon as a value is read it
 shall be converted to double precision.  Particles will be assigned an integer
 numeric identifier starting at \cppid{0}.
 
-Once a particle has been read, its corresponding block in the grid determined
+Once a particle has been read, its corresponding block in the grid is determined
 and the particle is added to the set of particles in that block. 
 
 If the number of particles found in the file does not match with the parameter
@@ -32,7 +32,7 @@ error output.
 Error: Number of particles mismatch. Header: 4750, Found: 4700.
 \end{lstlisting}
 
-If the file is successfully read the values for the parameters shall be sent
+If the file is successfully read, the values for the parameters shall be sent
 to the standard output.
 
 \begin{lstlisting}[style=terminal,escapechar=@]
