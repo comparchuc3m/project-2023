@@ -24,12 +24,21 @@ Si el número de partículas encontrado en el archivo no coincide con el paráme
 \textmark{número de partículas} (\cppid{np}), se genera un mensaje de error y
 el programa termina con el código de error
 \cppid{-5}. Por ejemplo, si la cabecera tiene el valor \cppid{4750} para
-\cppid{np} pero el archivo contiene 4700 partículas, el siguiente mensaje se
+\cppid{np} pero el archivo contiene \cppid{4700} partículas, el siguiente mensaje se
 envía a la salida estándar de errores.
 
 \begin{lstlisting}[style=terminal,escapechar=@]
 @\$@ fluid 2000 init.fld final.fld
 Error: Number of particles mismatch. Header: 4750, Found: 4700.
+\end{lstlisting}
+
+Como otro ejemplo, si la cabecera tiene el valor \cppid{4750} para \cppid{np}
+pero el archivo tiene \cppid{5000} partículas, el siguiente mensaje se envía a 
+la salida estándar de errores.
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ fluid 2000 init.fld final.fld
+Error: Number of particles mismatch. Header: 4750, Found: 5000.
 \end{lstlisting}
 
 Si el archivo se lee con éxito, los valores de los parámetros se envían a la

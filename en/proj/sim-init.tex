@@ -32,6 +32,15 @@ error output.
 Error: Number of particles mismatch. Header: 4750, Found: 4700.
 \end{lstlisting}
 
+As another example, if the header has the value \cppid{4750} for \cppid{np} but
+the file contains \cppid{5000} particles, the following message shall be sent to
+the standard error output.
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ fluid 2000 init.fld final.fld
+Error: Number of particles mismatch. Header: 4750, Found: 5000.
+\end{lstlisting}
+
 If the file is successfully read, the values for the parameters shall be sent
 to the standard output.
 
