@@ -15,7 +15,8 @@ Estos parámetros incluyen:
 La información para cada partícula se lee del archivo de entrada. Aunque los
 archivos de entrada utiliza simple precisión para los valores en coma flotante,
 tan pronto como los valores se leen se convertirán a doble precisión. Las
-partículas reciben un identificador numérico entero a partir del \cppid{0}.
+partículas reciben un identificador numérico entero consecutivo a partir del 
+\cppid{0}, manteniendo el mismo orden que tienen en el fichero de entrada.
 
 Una vez se ha leído una partícula, se determina su correspondiente bloque en la
 malla y la partícula se añade al conjunto de partículas de ese bloque.

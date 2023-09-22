@@ -14,8 +14,9 @@ Those parameters include:
 
 The information for each particle is read from the input file. Although input
 files use single precision for floating point, as soon as a value is read it
-shall be converted to double precision.  Particles will be assigned an integer
-numeric identifier starting at \cppid{0}.
+shall be converted to double precision.  Particles will be assigned a consecutive
+integer numeric identifier starting at \cppid{0}, keeping the same order that
+is used in the input file.
 
 Once a particle has been read, its corresponding block in the grid is determined
 and the particle is added to the set of particles in that block. 
