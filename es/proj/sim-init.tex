@@ -20,6 +20,15 @@ partículas reciben un identificador numérico entero a partir del \cppid{0}.
 Una vez se ha leído una partícula, se determina su correspondiente bloque en la
 malla y la partícula se añade al conjunto de partículas de ese bloque.
 
+Si el número de partículas encontradon en la cabecera es \cppid{0} o un número
+negativo, el programa termina con el código de error \cppid{-5} y se genera un
+mensaje de error.
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ fluid 2000 init.fld final.fld
+Error: Invalid numberof particles: 0.
+\end{lstlisting}
+
 Si el número de partículas encontrado en el archivo no coincide con el parámetro
 \textmark{número de partículas} (\cppid{np}), se genera un mensaje de error y
 el programa termina con el código de error
