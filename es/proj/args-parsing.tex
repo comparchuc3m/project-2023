@@ -1,0 +1,74 @@
+\subsection{Análisis de argumentos del programa}
+
+Cada aplicación (\cppid{soa} y
+\cppid{aos}) tomará exactamente tres parámetros:
+
+\begin{itemize}
+\item \textmark{nts}: 
+Número de \emph{time steps} (pasos de tiempo). Este parámetro especifica
+durante cuántos paso de tiempo debe ejecutarse la simulación.
+\item \textmark{inputfile}: 
+Archivo de entrada con el estado inicial de la simulación.
+\item \textmark{outputfile}: 
+Archivo de salida con el estado final de la simulación.
+\end{itemize}
+
+Por ejemplo, el mandato:
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ aos 2000 init.fld final.fld
+\end{lstlisting}
+
+Carga el archivo \cppid{init.fld} ejecuta \cppid{2000} pasos de tiempo y genera
+un archivo de salida llamado \cppid{final.fld}.
+
+Si el número de argumentos no es exactamente tres argumentos, 
+se generará un mensaje de error y el programa terminará con el código de error 
+\cppid{-1}.
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ aos 
+Error: Invalid number of arguments: 0.
+@\$@ aos 4
+Error: Invalid number of arguments: 1.
+@\$@ aos 2000 init.fld
+Error: Invalid number of arguments: 2.
+@\$@ aos 2000 init.fld final.fld 45
+Error: Invalid number of arguments: 4.
+\end{lstlisting}
+
+Si el primer argumento no es un número entero,
+se generará un mensaje de error y el programa terminará con el código de error 
+\cppid{-1}.
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ aos hello init.fld final.fld
+Error: time steps must be numeric.
+\end{lstlisting}
+
+Si el número de pasos de tiempo es un número negativo,
+se generará un mensaje de error y el programa terminará con el código de error 
+\cppid{-2}.
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ aos -3 init.fld final.fld
+Error: Invalid number of time steps.
+\end{lstlisting}
+
+Si el archivo de entrada no se puede abrir para lectura,
+se generará un mensaje de error y el programa terminará con el código de error 
+\cppid{-3}.
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ soa 1 init.fld final.fld
+Error: Cannot open init.fld for reading
+\end{lstlisting}
+
+Si el archivo de salida no se puede abrir para escritura, 
+se generará un mensaje de error y el programa terminará con el código de error 
+\cppid{-4}.
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ soa 5 init.fld final.fld
+Error: Cannot open final.fld for writing
+\end{lstlisting}

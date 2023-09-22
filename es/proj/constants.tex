@@ -1,0 +1,87 @@
+\clearpage
+\subsection{Constantes de la simulación}
+
+La tabla~\ref{tab:constants} muestra las constantes utilizadas en la 
+simulación:
+
+\begin{table}[hbt!]
+
+\begin{center}
+\begin{tabular}{|l|l|r|}
+
+\hline
+\textbf{Constante} & \textbf{Descripción} & \textbf{Valor}\\
+\hline
+\hline
+
+r & \textgood{Multiplicador de radio} & 1.695\\
+\hline
+
+$\rho$ & \textgood{Densidad de fluido} & $10^3$\\
+\hline
+
+$p_s$ & \textgood{Presión de rigidez} & 3.0\\
+\hline 
+
+$s_c$ & \textgood{Colisiones de rigidez} & $3 \cdot 10^4$\\
+\hline
+
+$d_v$ & \textgood{Amortiguamiento} & 128.0\\
+\hline
+
+$\mu$ & \textgood{Viscosidad} & 0.4\\
+\hline
+
+$d_p$ & \textgood{Tamaño de partícula} & $2 \cdot 10^{-4}$\\
+\hline
+
+$\Delta t $& \textgood{Paso de tiempo} & $10^{-3}$\\
+\hline
+
+\end{tabular}
+\end{center}
+
+\caption{Constantes escalares de la simulación.}
+\label{tab:constants}
+\end{table}
+
+Además, la tabla~\ref{tab:vec-constants} presenta la constantes vectoriales a
+utilizar en la simulación. Ten en cuenta que la \textgood{aceleración externa}
+($\vec{g}$) es la aceleración de la gravedad, que en este ejemplo actúa a lo
+largo del eje y.  El \textgood{límite superior del recinto} ($\vec{b}_{max}$) y
+\textgood{límite inferior del recinto} ($\vec{b}_{min}$) define dos vértices
+opuestos en un cuboide rectangular.  Este es el dominio cerrado en el que ocurre
+la simulación.  $\vec{b}_{max}$ viene dado por el vector $(x_{max}, y_{max},
+z_{max})$ y  $\vec{b}_{min}$ viene dado por el vector $(x_{min}, y_{min},
+z_{min})$.
+
+\begin{table}[h]
+
+\begin{center}
+\begin{tabular}{|l|l|r|r|r|}
+
+\hline
+\textbf{Constante} & \textbf{Descripción} & \cppid{x} & \cppid{y} & \cppid{z}\\
+\hline
+\hline
+
+$\vec{g}$ & \textgood{Aceleración externa} & 0.0 & 9.8 & 0.0\\
+\hline
+
+$\vec{b}_{min}$ & \textgood{Límite superior de recinto} & 0.065 & 0.1 & 0.065\\
+\hline
+
+$\vec{b}_{max}$ & \textgood{Límite inferior de recinto} & -0.065 & -0.08 & -0.065\\
+\hline 
+
+\end{tabular}
+\end{center}
+
+\caption{Constantes vectoriales de simulación.}
+\label{tab:vec-constants}
+\end{table}
+
+Ten en cuenta que pueden ser necesarias algunas constantes matemáticas (p.ej.
+$\pi$). En tal caso el valor preferido será el suministrado por la biblioteca
+estándar de C++20. Por favor, consulta el espacio de nombres
+\cppid{std::numbers} para dichas constantes. 

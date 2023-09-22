@@ -1,0 +1,114 @@
+\subsubsection{Colisiones de partículas}
+
+En esta etapa, se tienen en cuenta las colisiones de las partículas con las
+paredes del recinto para actualizar el vector aceleración.
+Dado que los índices para un bloque de la malla son
+$c_x$, $c_y$ y $c_z$, se tienen en cuenta las siguientes opciones:
+
+\begin{itemize}
+\item $c_x=0$
+\item $c_x=n_x-1$
+\item $c_y=0$
+\item $c_y=n_y-1$
+\item $c_z=0$
+\item $c_z=n_z-1$
+\end{itemize}
+
+\subparagraph{Colisiones con los límites del eje x}
+
+Cuando se fija $c_x$, para cualquier combinación de $c_y$ y $c_z$ se
+procesan todas las partículas. Primero, se calcula la coordenada $x$ de la 
+nueva posición.
+
+\[
+x = \vec{p}_x + \overrightarrow{hv}_x \cdot \Delta t \\
+\]
+
+Después, la diferencia con el límite se compara con el \textmark{tamaño de la
+partícula} ($d_p$).
+
+\[
+\Delta x = 
+\begin{cases}
+d_p - (x - x_{min}) & \text{if } c_x = 0\\
+d_p - (x_{max} - x) & \text{if } c_x = n_x -1\\
+\end{cases}
+\]
+
+Si $\Delta x$ es mayor que $10^{-10}$, se actualiza la aceleración,
+teniendo en cuenta la \textmark{colisiones de rigidez} ($c_s$) y el
+\textmark{amortiguamiento} ($d_v$).
+
+\[
+a_x = 
+\begin{cases}
+  a_x + c_s \cdot \Delta x - d_v \cdot v_x & \text{if  } c_x = 0\\
+  a_x - c_s \cdot \Delta x + d_v \cdot v_x & \text{if  } c_x = n_x-1\\
+\end{cases}
+\]
+
+\subparagraph{Colisiones con los límites del eje y}
+
+Cuando se fija $c_y$, para cualquier combinación de $c_x$ y $c_z$ se
+procesan todas las partículas. Primero, se calcula la coordenada $y$ de la 
+nueva posición.
+
+\[
+y = \vec{p}_y + \overrightarrow{hv}_y \cdot \Delta t \\
+\]
+
+Después, la diferencia con el límite se compara con el \textmark{tamaño de la
+partícula} ($d_p$).
+
+\[
+\Delta y = 
+\begin{cases}
+d_p - (y - y_{min}) & \text{if } c_y = 0\\
+d_p - (y_{max} - y) & \text{if } c_y = n_y -1\\
+\end{cases}
+\]
+
+Si $\Delta y$ es mayor que $10^{-10}$, se actualiza la aceleración,
+teniendo en cuenta la \textmark{colisiones de rigidez} ($c_s$) y el
+\textmark{amortiguamiento} ($d_v$).
+
+\[
+a_y = 
+\begin{cases}
+  a_y + c_s \cdot \Delta x - d_v \cdot v_y & \text{if  } c_y = 0\\
+  a_y - c_s \cdot \Delta x + d_v \cdot v_y & \text{if  } c_y = n_y-1\\
+\end{cases}
+\]
+
+\subparagraph{Colisiones con los límites del eje z}
+
+Cuando se fija $c_z$, para cualquier combinación de $c_x$ y $c_y$ se
+procesan todas las partículas. Primero, se calcula la coordenada $z$ de la 
+nueva posición.
+
+\[
+z = \vec{p}_z + \overrightarrow{hv}_z \cdot \Delta t \\
+\]
+
+Después, la diferencia con el límite se compara con el \textmark{tamaño de la
+partícula} ($d_p$).
+
+\[
+\Delta z = 
+\begin{cases}
+d_p - (z - z_{min}) & \text{if } c_z = 0\\
+d_p - (z_{max} - z) & \text{if } c_z = n_z -1\\
+\end{cases}
+\]
+
+Si $\Delta z$ es mayor que $10^{-10}$, se actualiza la aceleración,
+teniendo en cuenta la \textmark{colisiones de rigidez} ($c_s$) y el
+\textmark{amortiguamiento} ($d_v$).
+
+\[
+a_z = 
+\begin{cases}
+  a_z + c_s \cdot \Delta z - d_v \cdot v_z & \text{if  } c_z = 0\\
+  a_z - c_s \cdot \Delta z + d_v \cdot v_z & \text{if  } c_z = n_z-1\\
+\end{cases}
+\]

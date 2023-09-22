@@ -1,0 +1,86 @@
+\subsubsection{Cálculo de aceleraciones}
+
+Se realizan los siguientes pasos:
+
+\begin{enumerate}
+\item Iniciación de aceleraciones.
+\item Incremento de densidades.
+\item Transformación de densidades.
+\item Transferencia de aceleraciones.
+\end{enumerate}
+
+\paragraph{Iniciación de densidades y aceleraciones}.
+Durante este paso se da un valor inicial a la densidad ($\delta_i$)
+y el vector aceleración ($\vec{a_i}$) para cada partícula.
+
+La densidad se inicia a \cppid{0}.
+\[
+\delta_i = 0
+\]
+
+El vector aceleración se inicia al valor de la \textgood{aceleración externa}.
+\[
+\vec{a}_i = \vec{g}
+\]
+
+\paragraph{Incremento de densidades}.
+En este paso, para cada bloque de la malla de simulación, se consideran todos 
+los bloques contiguos así como el bloque actual. Para cada par de partículas
+$i$ y $j$, se incrementan las densidades.
+
+\[
+\Delta \rho_{ij} = 
+    \begin{cases}
+      (h^2 - |\vec{p_i} - \vec{p_j}|^2)^3 & 
+          \text{if  } |\vec{p_i} - \vec{p_j}|^2 < h^2\\
+      0 & 
+          \text{if  } |\vec{p_i} - \vec{p_j}|^2 \geq h^2\\
+    \end{cases}
+\]
+
+Ten en cuenta que el incremento de densidad $\Delta \rho_{ij}$ se aplica a ambas
+partículas: $i$ y $j$.
+
+\[
+\begin{split}
+\rho_i = \rho_i + \Delta \rho_{ij}\\
+\rho_j = \rho_j + \Delta \rho_{ij}\\
+\end{split}
+\]
+
+No obstante, ten especial cuidado para evitar que una partícula se incremente dos
+veces con el mismo incremento (ya que $\Delta \rho_{ij} = \Delta \rho_{ji}$).
+
+\paragraph{Transformación de densidad}
+Para cada densidad calculada, se realiza una transformación lineal.
+
+\[
+\rho_i = (\rho_i + h^6) \cdot \frac{315}{64 \cdot \pi \cdot h^9} \cdot m
+\]
+
+\paragraph{Transferencia de la aceleración}
+En este paso, para cada bloque de la malla de simulación, se consideran todos 
+los bloques contiguos así como el bloque actual. Para cada par de partículas
+$i$ y $j$, se evalúan las distancias.
+
+Si las dos partículas están suficientemente cerca 
+($\|\vec{p_i} - \vec{p_j}\|^2 < h^2$) se actualiza la aceleración.
+
+\[
+\begin{split}
+& dist_{ij} = \sqrt{\max(\|\vec{p_i} - \vec{p_j}\|^2, 10^{-12})} \\
+& \Delta \vec{a}_{ij} = 
+  \frac{
+    (\vec{p_i} - \vec{p_j}) \cdot \frac{15}{\pi \cdot h^6} \cdot m \cdot 
+    \dfrac{(h - dist_{ij})^2}{dist_{ij}^2} \cdot (\rho_i + \rho_j - \rho) +
+    (\vec{v_j} - \vec{v_i}) \cdot \frac{45}{\pi \cdot h^6} \cdot \mu \cdot m
+  }{
+    \rho_i \cdot \rho_j    
+  } \\
+& \vec{a}_i = \vec{a}_i + \Delta \vec{a}_{ij}\\
+& \vec{a}_j = \vec{a}_j - \Delta \vec{a}_{ij}\\
+\end{split}
+\]
+
+No obstante, ten especial cuidado para evitar que una partícula se incremente dos
+veces con el mismo incremento (ya que $\vec{a}_{ij} = \vec{a}_{ji}$).

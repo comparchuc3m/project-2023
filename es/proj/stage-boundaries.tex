@@ -1,0 +1,102 @@
+\subsubsection{Interacciones con los límites del recinto}
+
+En esta etapa, se tienen en cuenta las colisiones de las partículas con
+los límites del recinto. Dado que los índices en un bloque de la malla
+son $c_x$, $c_y$ y $c_z$, se tienen en cuenta las siguientes opciones.
+
+\begin{itemize}
+\item $c_x=0$
+\item $c_x=n_x-1$
+\item $c_y=0$
+\item $c_y=n_y-1$
+\item $c_z=0$
+\item $c_z=n_z-1$
+\end{itemize}
+
+\subparagraph{Colisiones con límites en el eje x}
+
+Cuando se fija $c_x$, 
+para cualquier combinación de $c_y$ y $c_z$ se procesan todas
+las partículas.
+
+\[
+d_x =
+\begin{cases}
+  \vec{p}_x -x_{min}  & \text{if } c_x = 0\\
+  x_{max} - \vec{p}_x & \text{if } c_x = n_x - 1\\
+\end{cases}
+\]
+
+Solamente cuando $d_x$ es negativo hay una colisión. En ese caso, se actualizan
+$p_x$, $v_x$ y $hv_x$
+
+\[
+\begin{split}
+&p_x = 
+  \begin{cases}
+    x_{min} - d_x & \text{if } c_x = 0\\
+    x_{max} + d_x & \text{if } c_x = n_x -1\\
+  \end{cases}\\
+&v_x = -v_x\\
+&hv_x = -hv_x\\
+\end{split}
+\]
+
+\subparagraph{Colisiones con límites en el eje y}
+
+Cuando se fija $c_y$, 
+para cualquier combinación de $c_x$ y $c_z$ se procesan todas
+las partículas.
+
+\[
+d_y =
+\begin{cases}
+  \vec{p}_y - y_{min}  & \text{if } c_y = 0\\
+  y_{max} - \vec{p}_y & \text{if } c_y = n_y - 1\\
+\end{cases}
+\]
+
+Solamente cuando $d_y$ es negativo hay una colisión. En ese caso, se actualizan
+$p_y$, $v_y$ y $hv_y$
+
+\[
+\begin{split}
+&p_y = 
+  \begin{cases}
+    y_{min} - d_y & \text{if } c_y = 0\\
+    y_{max} + d_y & \text{if } c_y = n_y -1\\
+  \end{cases}\\
+&v_y = -v_y\\
+&hv_y = -hv_y\\
+\end{split}
+\]
+
+\subparagraph{Colisiones con límites en el eje x}
+
+Cuando se fija $c_z$, 
+para cualquier combinación de $c_x$ y $c_y$ se procesan todas
+las partículas.
+
+\[
+d_z =
+\begin{cases}
+  \vec{p}_z -z_{min}  & \text{if } c_z = 0\\
+  z_{max} - \vec{p}_z & \text{if } c_z = n_z - 1\\
+\end{cases}
+\]
+
+Solamente cuando $d_z$ es negativo hay una colisión. En ese caso, se actualizan
+$p_z$, $v_z$ y $hv_z$
+
+\[
+\begin{split}
+&p_z = 
+  \begin{cases}
+    z_{min} - d_z & \text{if } c_z = 0\\
+    z_{max} + d_z & \text{if } c_z = n_z -1\\
+  \end{cases}\\
+&v_z = -v_z\\
+&hv_z = -hv_z\\
+\end{split}
+\]
+

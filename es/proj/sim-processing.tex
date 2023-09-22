@@ -1,0 +1,23 @@
+\subsection{Procesamiento de la simulación}
+
+La etapa de procesamiento de la simulación realiza cálculos sobre todas las
+partículas en cada paso de tiempo. Por tanto, esta etapa se repite tantas veces 
+como el número de pasos de tiempo que se especifique.
+
+Para cada paso de tiempo se ejecutan las siguientes sub-etapas:
+
+\begin{enumerate}
+
+\item Reposicionamiento de cada partícula en la malla.
+\item Cálculo de fuerzas y aceleraciones para cada partícula.
+\item Procesamiento de colisiones.
+\item Movimiento de partículas.
+\item Procesamiento de límites.
+
+\end{enumerate}
+
+\input{es/proj/stage-reposition}
+\input{es/proj/stage-forces}
+\input{es/proj/stage-collisions}
+\input{es/proj/stage-move}
+\input{es/proj/stage-boundaries}

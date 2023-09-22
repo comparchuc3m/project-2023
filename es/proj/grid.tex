@@ -1,0 +1,59 @@
+\subsection{La mala de simulación}
+
+Para evita realizar demasiados cálculos, el recinto de simulación completo se
+divide en bloques de menor tamaño. Ten en cuenta que el recinto de simulación es
+un cuboide rectangular con longitudes diferentes en cada una de las tres
+dimensiones.
+
+Para determinar el número de bloques de cada dimensión se divide la longitud en
+esa dimensión por el parámetro $h$.
+
+\[
+\begin{split}
+n_x = \lfloor \frac{x_{max}- x_{min}}{h} \rfloor\\
+n_y = \lfloor \frac{y_{max}- y_{min}}{h} \rfloor\\
+n_z = \lfloor \frac{z_{max}- z_{min}}{h} \rfloor
+\end{split}
+\]
+
+El tamaño de un bloque de la malla $\vec{s}$ ($s_x, s_y, s_z$) viene dado por
+\[
+\begin{split}
+s_x = \frac{x_{max} - x_{min}}{n_x}\\
+s_y = \frac{y_{max} - y_{min}}{n_y}\\
+s_z = \frac{z_{max} - z_{min}}{n_z}\\
+\end{split}
+\] 
+
+Dada una partícula con vector de posición $\vec{p}$, los índices de bloque se
+calcula teniendo en cuenta su distancia en cada dimensión ala coordenada mínima
+del recinto y el tamaño de un bloque de la malla ($\vec{s}$).
+
+\[
+\begin{split}
+i = \frac{p_x - x_{min}}{s_x}\\
+j = \frac{p_y - y_{min}}{s_y}\\
+k = \frac{p_z - z_{min}}{s_z}\\
+\end{split}
+\]
+
+Ten en cuenta que para cada dimensión el correspondiente índice no puede ser
+menor que $0$ o mayor o igual que el correspondiente número de bloques en esa
+dimensión.
+
+\[
+\begin{split}
+i \in [0, n_x-1]\\
+j \in [0, n_x-1]\\
+k \in [0, n_x-1]\\
+\end{split}
+\]
+
+Si un índice está fuera de su rango correspondiente, se debe ajustar al
+correspondiente límite.
+
+El papel clave de los bloques de simulación es que solamente usarán para los
+cálculos las partículas en el mismo bloque o en bloques contiguos. En general,
+para cualquier bloque hay 26 bloques contiguos. Este número puede ser menor
+cuando el bloque está en los límites de la malla. Por ejemplo, cuando $i=j=k=0$,
+el número de 7.

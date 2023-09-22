@@ -1,0 +1,19 @@
+\subsection{Parámetros de la simulación}
+
+Varios parámetros dependen de la cantidad de partículas por metro
+(\cppid{ppm}).
+
+La masa de una partícula $m$ depende de la densidad $\rho$ y de la cantidad de
+partículas por metro (\cppid{ppm}).
+
+\[
+m = \rho \cdot ppm^3
+\]
+
+Otro parámetro relevante es la \textmark{longitud de suavizado} ($h$), que
+depende del \textmark{multiplicador de radio} ($r$) y de la cantidad de
+partículas por metro (\cppid{ppm}).
+
+\[
+h = \frac{r}{ppm}
+\]

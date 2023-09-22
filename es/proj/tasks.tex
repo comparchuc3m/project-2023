@@ -1,0 +1,184 @@
+\section{Tareas}
+
+\subsection{Desarrollo de software}
+
+\subsubsection{Programa a desarrollar}
+
+Esta tarea consiste en el desarrollo de una versión secuencia de la aplicación
+descrita utilizando C++20. Por favor, ten en cuenta que no se permite
+utilización de varios hilos de ejecución (\emph{multithreading}) ni de
+paralelismo de ninguna clase.
+
+Para el desarrollo del programa los equipos pueden considerar distintas
+alternativas como el uso de estructuras de arrays, arrays de estructuras o bien
+alternativas híbridas entre ambos enfoques.
+
+\subsubsection{Componentes}
+
+Se desarrollarán los siguientes componentes
+
+\begin{itemize}
+  \item \cppid{sim}: 
+        Biblioteca con todos los componentes usados desde el programa principal.
+
+  \item \cppid{utest}: 
+        Pruebas unitarias de todos los componentes de la biblioteca \cppid{sim}.
+
+  \item \cppid{ftest}:
+        Pruebas funcionales de la aplicación.
+
+  \item \cppid{fluid}: 
+        Programa ejecutable con la aplicación.
+
+\end{itemize}
+
+A continuación, se describen algunos componentes con más detalle:
+
+\paragraph{sim}: Componentes de la biblioteca de simulación.
+
+Contendrá, al menos, los siguientes archivos fuente:
+\begin{itemize}
+  \item \cppid{progargs.hpp, progargs.cpp}: 
+        Tratamiento de argumentos para los parámetros de \cppid{main()}.
+  \item \cppid{grid.hpp, grid.cpp}: 
+        Representación de la malla.
+  \item \cppid{block.hpp, block.cpp}: 
+        Representación de un bloque.
+\end{itemize}
+
+\paragraph{utest}: Pruebas unitarias.
+
+Contendrá, al menos, los siguientes archivos fuente:
+\begin{itemize}
+  \item \cppid{progargs\_test.cpp}: 
+        Pruebas unitarias para \cppid{progargs}.
+  \item \cppid{grid\_test.cpp}:
+        Pruebas unitarias para \cppid{grid}.
+  \item \cppid{block\_test.cpp}:
+        Pruebas unitarias para \cppid{block}.
+\end{itemize}
+
+\paragraph{fluid}: Programa con la aplicación.
+
+Contendrá un único archivo fuente:
+\begin{itemize}
+  \item \cppid{fluid.cpp}: 
+        Contendrá solamente una función \cppid{main()} para la aplicación.
+        No incluirá ninguna función adicional.
+\end{itemize}
+
+\subsubsection{Compilación del proyecto}
+
+Todos los archivos fuente deben compilar sin problemas y no emitirán ninguna
+advertencia del compilador. Se incluirá un archivo de configuración de CMake
+con las siguientes opciones:
+
+\begin{lstlisting}[title={Main CmakeLists.txt},frame=single]
+cmake_minimum_required(VERSION 3.26)
+project(fluid LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS_OFF)
+add_compile_options(-Wall -Wextra -Werror -pedantic -pedantic-errors)
+
+set(CMAKE_CXX_FLAGS_RELEASE "-march=native")
+
+add_subdirectory(sim)
+add_subdirectory(fluid)
+
+enable_testing()
+add_subdirectory(utest)
+add_subdirectory(ftest)
+\end{lstlisting}
+
+El archivo de configuración de CMake para el directorio \cppid{sim} incluirá las
+siguientes opciones:
+
+\begin{lstlisting}[title={Library sim CmakeLists.txt},frame=single]
+add_library(sim file1.cpp file2.cpp file3.cpp)
+target_include_directories(sim PUBLIC ..)
+\end{lstlisting}
+
+El archivo de configuración de CMake para el directorio \cppid{fluid} incluirá las
+siguientes opciones:
+
+\begin{lstlisting}[title={Program fluid CmakeLists.txt},frame=single]
+add_executable(fluid fluid.cpp)
+target_link_libraries(fluid sim)
+target_include_directories(fluid PUBLIC ../common)
+\end{lstlisting}
+
+Ten en cuenta que estas reglas son solamente ejemplos.
+
+Recuerda que todas las evaluaciones se realizarán con las optimizaciones del
+compilador activadas con la opción de CMake
+\cppid{-DCMAKE\_BUILD\_TYPE=Release}.
+
+\textbad{IMPORTANTE}: 
+La única biblioteca permitida es la biblioteca estándar de C++.
+No se permite bibliotecas externas.
+
+\textbad{EXCEPCIÓN}: 
+Se permite el uso de la biblioteca de soporte a las \emph{C++ Core Guidelines}.
+La última versión se puede obtener en:
+\url{https://github.com/microsoft/GSL}.
+
+\subsubsection{Reglas de calidad de código}
+
+El código fuente debe estar bien estructurado y organizado, así como
+apropiadamente documentado.
+Se recomienda (aunque no se requiere) seguir las \textemph{C++ Core Guidelines}
+(\url{http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines}).
+
+Se publicará un conjunto de reglas en un documento separado.
+
+\subsubsection{Pruebas unitarias}
+
+Se definirá un conjunto de pruebas unitarias que también se entregarán.
+Se recomienda, aunque no se requiere, el uso de GoogleTest
+(\url{https://github.com/google/googletest}).
+
+En cualquier caso, se entregarán evidencias de que hay pruebas unitarias
+suficientes.
+
+\subsubsection{Uso de herramientas de IA}
+
+El uso de herramientas basadas en IA durante el proyecto está permitido.
+No obstante, se debe tener en cuenta lo siguiente:
+
+\begin{itemize}
+
+\item Si usas una herramienta basada en IA, se deben declarar los usos en 
+la sección de diseño de la memoria del proyecto. No se realizará ninguna
+penalización en la declaración siempre que se incluya una declaración de uso.
+
+\item No se dará soporte al uso de dichas herramientas. En particular,
+si tienes preguntas sobre tu código, deberás ser capaz de explicar dicho
+código.
+
+\item Ten en cuenta que algunas herramientas de IA pueden generar código
+inseguro o código con bajo rendimiento.
+
+\item Cualquiera de tus profesores podrá requerirte una explicación de tu propio 
+código.
+
+\end{itemize}
+
+\subsection{Evaluación del rendimiento y la energía}
+
+Esta tarea consiste en la realización de una evaluación del rendimiento.
+Para llevar a cabo la evaluación del rendimiento, se medirá el tiempo total
+de ejecución. Además, también se medirá la energía y se derivará la potencia.
+
+Todas las evaluaciones del rendimiento se realizarán en un nodo del clúster
+\cppid{avignon}.
+
+Representa en una gráfica los tiempos totales de ejecución, uso de energía y
+potencia para distintos números de iteraciones.
+
+\textbf{La memoria del proyecto incluirá conclusiones derivadas de los
+resultados}.
+Por favor, no te limites a una mera descripción de los datos.
+Trata de encontrar explicaciones convincentes de estos resultados.
+

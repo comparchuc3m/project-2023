@@ -1,0 +1,28 @@
+\section{Introducción}
+
+La simulación de flujos de fluidos se puede lograr con diversos métodos. Uno de
+ellos es la simulación de hidrodinámica de partículas suavizada (\emph{Smoothed
+Particle Hydrodynamics} o \emph{SPH}). La simulación SPH resuelve las ecuaciones
+de Navier-Stokes en pasos de tiempo. Un fluido se modela como una colección de
+partículas. Estas partículas tienen interacciones que tienen impacto en su
+aceleración, posición y velocidad.
+
+Solamente las partículas que están a una corta distancia tienen una interacción
+real. Para acelerar la simulación, las interacciones de larga distancia se
+descartan. Para lograr esto, el espacio 3D se divide en una malla de bloques y
+solamente se tienen en cuenta las partículas en bloques vecinos.
+
+La simulación incluye varios pasos:
+\begin{itemize}
+  \item Lectura del estado inicial de la simulación.
+  \item Simulación de las partículas para cada paso de tiempo o iteración:
+    \begin{itemize}
+      \item Reposicionamiento de cada partícula en la malla.
+      \item Cálculo de las fuerzas y aceleraciones de cada partícula.
+      \item Procesamiento de las colisiones de partículas con los límites del
+recinto.
+      \item Movimiento de partículas.
+      \item Reprocesamiento de los límites del recinto.
+    \end{itemize}
+  \item Almacenamiento del estado final de la simulación.
+\end{itemize}

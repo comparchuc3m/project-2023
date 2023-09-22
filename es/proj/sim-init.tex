@@ -1,0 +1,48 @@
+\subsection{Iniciación de la simulación}
+
+Durante la iniciación, se abre el archivo de entrada y se leen los parámetros de
+simulación principales (partículas por metro y número de partículas).
+Después, se calculan otros parámetros que dependen de éstos.
+
+Those parameters include:
+\begin{itemize}
+\item La \textmark{longitud de suavizado} ($h$).
+\item La \textmark{masa de la partícula} ($m$).
+\item El \textmark{vector de tamaño de malla} ($\vec{n} = (n_x, n_y, n_z)$).
+\item El \textmark{tamaño de bloque de malla} ($\vec{s} = (s_x, s_y, s_z)$).
+\end{itemize}
+
+La información para cada partícula se lee del archivo de entrada. Aunque los
+archivos de entrada utiliza simple precisión para los valores en coma flotante,
+tan pronto como los valores se leen se convertirán a doble precisión. Las
+partículas reciben un identificador numérico entero a partir del \cppid{0}.
+
+Una vez se ha leído una partícula, se determina su correspondiente bloque en la
+malla y la partícula se añade al conjunto de partículas de ese bloque.
+
+Si el número de partículas encontrado en el archivo no coincide con el parámetro
+\textmark{número de partículas} (\cppid{np}), se genera un mensaje de error y
+el programa termina con el código de error
+\cppid{-5}. Por ejemplo, si la cabecera tiene el valor \cppid{4750} para
+\cppid{np} pero el archivo contiene 4700 partículas, el siguiente mensaje se
+envía a la salida estándar de errores.
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ aos 2000 init.fld final.fld
+Error: Number of particles mismatch. Header: 4750, Found: 4700.
+\end{lstlisting}
+
+Si el archivo se lee con éxito, los valores de los parámetros se envían a la
+salida estándar.
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ aos 2000 init.fld final.fld
+Number of particles: 4800
+Particles per meter: 204
+Smoothing length: 0.00830882
+Particle mass: 0.00011779
+Grid size: 15 x 21 x 15
+Number of blocks: 4725
+Block size: 0.00866667 x 0.00857143 x 0.00866667
+\end{lstlisting}
+

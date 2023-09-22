@@ -1,0 +1,20 @@
+\section{Etapas de la simulación}
+
+La estructura de la aplicación de simulación es la siguiente:
+
+\begin{enumerate}
+  \item \textmark{Análisis de argumentos}: Se analizan los argumentos 
+        suministrados a través de la línea de comandos.
+  \item \textmark{Iniciación de la simulación}: Se carga el estado inicial de la
+        simulación desde un archivo y se da valores iniciales a las estructuras
+        de datos.
+  \item \textmark{Procesamiento de pasos de tiempo}: Para el número especificado
+        de pasos de tiempo se calcula el nuevo estado para cada partícula.
+  \item \textmark{Almacenamiento de resultados}: El estado final de la
+        simulación se guarda en un archivo.
+\end{enumerate}
+
+\input{es/proj/args-parsing}
+\input{es/proj/sim-init}
+\input{es/proj/sim-processing}
+\input{es/proj/sim-storage}

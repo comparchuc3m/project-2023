@@ -1,0 +1,12 @@
+\subsection{Almacenamiento de resultados}
+
+Durante el almacenamiento, el archivo de salida se abre para escritura
+en modo binario. Primeramente, se escribe los parámetros generales (partículas
+por metro y número de partículas). Posteriormente, se escriben todas las
+partículas. Ten en cuenta que para cada partícula solamente se escriben los vectores
+$\vec{p}$, $\overrightarrow{hv}$ y $\vec{v}$. El orden en el que las partículas
+deben escribirse en el archivo es en orden ascendente de identificadores.
+
+\textbad{IMPORTANTE}: 
+Aunque todos los cálculos internos se ejecutarán utilizando doble precisión,
+los resultados finales se almacenarán usando simple precisión.
