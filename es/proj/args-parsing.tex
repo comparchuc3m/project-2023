@@ -1,7 +1,6 @@
 \subsection{Análisis de argumentos del programa}
 
-Cada aplicación (\cppid{soa} y
-\cppid{aos}) tomará exactamente tres parámetros:
+La aplicación tomará exactamente tres parámetros:
 
 \begin{itemize}
 \item \textmark{nts}: 
@@ -16,7 +15,7 @@ Archivo de salida con el estado final de la simulación.
 Por ejemplo, el mandato:
 
 \begin{lstlisting}[style=terminal,escapechar=@]
-@\$@ aos 2000 init.fld final.fld
+@\$@ fluid 2000 init.fld final.fld
 \end{lstlisting}
 
 Carga el archivo \cppid{init.fld} ejecuta \cppid{2000} pasos de tiempo y genera
@@ -27,13 +26,13 @@ se generará un mensaje de error y el programa terminará con el código de erro
 \cppid{-1}.
 
 \begin{lstlisting}[style=terminal,escapechar=@]
-@\$@ aos 
+@\$@ fluid 
 Error: Invalid number of arguments: 0.
-@\$@ aos 4
+@\$@ fluid 4
 Error: Invalid number of arguments: 1.
-@\$@ aos 2000 init.fld
+@\$@ fluid 2000 init.fld
 Error: Invalid number of arguments: 2.
-@\$@ aos 2000 init.fld final.fld 45
+@\$@ fluid 2000 init.fld final.fld 45
 Error: Invalid number of arguments: 4.
 \end{lstlisting}
 
@@ -42,7 +41,7 @@ se generará un mensaje de error y el programa terminará con el código de erro
 \cppid{-1}.
 
 \begin{lstlisting}[style=terminal,escapechar=@]
-@\$@ aos hello init.fld final.fld
+@\$@ fluid hello init.fld final.fld
 Error: time steps must be numeric.
 \end{lstlisting}
 
@@ -51,7 +50,7 @@ se generará un mensaje de error y el programa terminará con el código de erro
 \cppid{-2}.
 
 \begin{lstlisting}[style=terminal,escapechar=@]
-@\$@ aos -3 init.fld final.fld
+@\$@ fluid -3 init.fld final.fld
 Error: Invalid number of time steps.
 \end{lstlisting}
 
@@ -60,7 +59,7 @@ se generará un mensaje de error y el programa terminará con el código de erro
 \cppid{-3}.
 
 \begin{lstlisting}[style=terminal,escapechar=@]
-@\$@ soa 1 init.fld final.fld
+@\$@ fluid 1 init.fld final.fld
 Error: Cannot open init.fld for reading
 \end{lstlisting}
 
@@ -69,6 +68,6 @@ se generará un mensaje de error y el programa terminará con el código de erro
 \cppid{-4}.
 
 \begin{lstlisting}[style=terminal,escapechar=@]
-@\$@ soa 5 init.fld final.fld
+@\$@ fluid 5 init.fld final.fld
 Error: Cannot open final.fld for writing
 \end{lstlisting}

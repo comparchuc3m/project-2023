@@ -1,7 +1,6 @@
 \subsection{Program arguments parsing}
 
-Each of the applications (\cppid{soa}, and
-\cppid{aos}) will be given exactly three parameters:
+The application will be given exactly three parameters:
 
 \begin{itemize}
 \item \textmark{nts}: Number of time steps. This parameter specifies how many
@@ -13,7 +12,7 @@ time steps shall be the simulation executed.
 For example, the command:
 
 \begin{lstlisting}[style=terminal,escapechar=@]
-@\$@ aos 2000 init.fld final.fld
+@\$@ fluid 2000 init.fld final.fld
 \end{lstlisting}
 
 Loads the file \cppid{init.fld} runs \cppid{2000} time steps and generates an
@@ -23,13 +22,13 @@ If the number of arguments is not exactly three arguments, an error message
 shall be generated and the program shall exit with error code \cppid{-1}.
 
 \begin{lstlisting}[style=terminal,escapechar=@]
-@\$@ aos 
+@\$@ fluid 
 Error: Invalid number of arguments: 0.
-@\$@ aos 4
+@\$@ fluid 4
 Error: Invalid number of arguments: 1.
-@\$@ aos 2000 init.fld
+@\$@ fluid 2000 init.fld
 Error: Invalid number of arguments: 2.
-@\$@ aos 2000 init.fld final.fld 45
+@\$@ fluid 2000 init.fld final.fld 45
 Error: Invalid number of arguments: 4.
 \end{lstlisting}
 
@@ -37,7 +36,7 @@ If the first argument is not an integer number, an error message shall be
 generated and the program shall exit with error code \cppid{-1}.
 
 \begin{lstlisting}[style=terminal,escapechar=@]
-@\$@ aos hello init.fld final.fld
+@\$@ fluid hello init.fld final.fld
 Error: time steps must be numeric.
 \end{lstlisting}
 
@@ -45,7 +44,7 @@ If number of time steps is a negative number, an error message shall be
 generated and the program shall exit with error code \cppid{-2}.
 
 \begin{lstlisting}[style=terminal,escapechar=@]
-@\$@ aos -3 init.fld final.fld
+@\$@ fluid -3 init.fld final.fld
 Error: Invalid number of time steps.
 \end{lstlisting}
 
@@ -53,7 +52,7 @@ If the input file cannot be opened for reading, an error message shall be
 generated and the program shall exit with error code \cppid{-3}.
 
 \begin{lstlisting}[style=terminal,escapechar=@]
-@\$@ soa 1 init.fld final.fld
+@\$@ fluid 1 init.fld final.fld
 Error: Cannot open init.fld for reading
 \end{lstlisting}
 
@@ -61,6 +60,6 @@ If the output file cannot be opened for writing, an error message shall be
 generated and the program shall exit with error code \cppid{-4}.
 
 \begin{lstlisting}[style=terminal,escapechar=@]
-@\$@ soa 5 init.fld final.fld
+@\$@ fluid 5 init.fld final.fld
 Error: Cannot open final.fld for writing
 \end{lstlisting}

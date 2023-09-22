@@ -32,10 +32,10 @@ $j$, the densities are increased.
 \[
 \Delta \rho_{ij} = 
     \begin{cases}
-      (h^2 - |\vec{p_i} - \vec{p_j}|^2)^3 & 
-          \text{if  } |\vec{p_i} - \vec{p_j}|^2 < h^2\\
+      (h^2 - \|\vec{p_i} - \vec{p_j}\|^2)^3 & 
+          \text{if  } \|\vec{p_i} - \vec{p_j}\|^2 < h^2\\
       0 & 
-          \text{if  } |\vec{p_i} - \vec{p_j}|^2 \geq h^2\\
+          \text{if  } \|\vec{p_i} - \vec{p_j}\|^2 \geq h^2\\
     \end{cases}
 \]
 
@@ -74,9 +74,9 @@ acceleration is updated.
 & dist_{ij} = \sqrt{\max(\|\vec{p_i} - \vec{p_j}\|^2, 10^{-12})} \\
 & \Delta \vec{a}_{ij} = 
   \frac{
-    (\vec{p_i} - \vec{p_j}) \cdot \frac{15}{\pi \cdot h^6} \cdot m \cdot 
+    (\vec{p_i} - \vec{p_j}) \cdot \dfrac{15}{\pi \cdot h^6} \cdot m \cdot 
     \dfrac{(h - dist_{ij})^2}{dist_{ij}^2} \cdot (\rho_i + \rho_j - \rho) +
-    (\vec{v_j} - \vec{v_i}) \cdot \frac{45}{\pi \cdot h^6} \cdot \mu \cdot m
+    (\vec{v_j} - \vec{v_i}) \cdot \dfrac{45}{\pi \cdot h^6} \cdot \mu \cdot m
   }{
     \rho_i \cdot \rho_j    
   } \\
