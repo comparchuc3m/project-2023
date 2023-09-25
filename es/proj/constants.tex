@@ -68,10 +68,12 @@ z_{min})$.
 $\vec{g}$ & \textgood{Aceleración externa} & 0.0 & 9.8 & 0.0\\
 \hline
 
-$\vec{b}_{min}$ & \textgood{Límite superior de recinto} & 0.065 & 0.1 & 0.065\\
+$\vec{b}_{min}$ & \textgood{Límite superior de recinto} & 
+\cppid{$x_{min}$} = 0.065 & \cppid{$y_{min}$} = 0.1 & \cppid{$z_{min}$} = 0.065\\
 \hline
 
-$\vec{b}_{max}$ & \textgood{Límite inferior de recinto} & -0.065 & -0.08 & -0.065\\
+$\vec{b}_{max}$ & \textgood{Límite inferior de recinto} & 
+\cppid{$x_{max}$} = -0.065 & \cppid{$y_{max}$} = -0.08 & \cppid{$z_{max}$} = -0.065\\
 \hline 
 
 \end{tabular}
@@ -80,6 +82,19 @@ $\vec{b}_{max}$ & \textgood{Límite inferior de recinto} & -0.065 & -0.08 & -0.0
 \caption{Constantes vectoriales de simulación.}
 \label{tab:vec-constants}
 \end{table}
+
+La figura~\ref{fig:cube} muestra una posible mall dividida en bloques
+y los límites del recinto $b_{min}$ y $b_{max}$.
+
+\begin{figure}[htb!]
+\begin{center}
+\input{int/cube.tkz}
+\end{center}
+\caption{Cube dimension.}
+\label{fig:cube}
+\end{figure}
+
+
 
 Ten en cuenta que pueden ser necesarias algunas constantes matemáticas (p.ej.
 $\pi$). En tal caso el valor preferido será el suministrado por la biblioteca

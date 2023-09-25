@@ -14,11 +14,21 @@ Those parameters include:
 
 The information for each particle is read from the input file. Although input
 files use single precision for floating point, as soon as a value is read it
-shall be converted to double precision.  Particles will be assigned an integer
-numeric identifier starting at \cppid{0}.
+shall be converted to double precision.  Particles will be assigned a consecutive
+integer numeric identifier starting at \cppid{0}, keeping the same order that
+is used in the input file.
 
 Once a particle has been read, its corresponding block in the grid is determined
 and the particle is added to the set of particles in that block. 
+
+If the number of particles found in the header is \cppid{0} or a negative value, 
+the program shall exit with code \cppid{-5} and an error message shall be 
+generated.
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ fluid 2000 init.fld final.fld
+Error: Invalid numberof particles: 0.
+\end{lstlisting}
 
 If the number of particles found in the file does not match with the parameter
 \textmark{number of particles} (\cppid{np}), an error message shall be generated
@@ -30,6 +40,15 @@ error output.
 \begin{lstlisting}[style=terminal,escapechar=@]
 @\$@ fluid 2000 init.fld final.fld
 Error: Number of particles mismatch. Header: 4750, Found: 4700.
+\end{lstlisting}
+
+As another example, if the header has the value \cppid{4750} for \cppid{np} but
+the file contains \cppid{5000} particles, the following message shall be sent to
+the standard error output.
+
+\begin{lstlisting}[style=terminal,escapechar=@]
+@\$@ fluid 2000 init.fld final.fld
+Error: Number of particles mismatch. Header: 4750, Found: 5000.
 \end{lstlisting}
 
 If the file is successfully read, the values for the parameters shall be sent
