@@ -72,46 +72,19 @@ It will contain a single source file:
 All source files must compile without problems and shall not emit any compiler warning.
 A CMake configuration file shall be included with the following options:
 
-\begin{lstlisting}[title={CmakeLists.txt},frame=single]
-cmake_minimum_required(VERSION 3.26)
-project(image LANGUAGES CXX)
-
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS_OFF)
-add_compile_options(-Wall -Wextra -Werror -pedantic -pedantic-errors)
-
-set(CMAKE_CXX_FLAGS_RELEASE "-march=native")
-
-add_subdirectory(sim)
-add_library(common file1-common.cpp file2-common.cpp file3-common.cpp)
-add_library(aos file1-aosd.cpp file2-aos.cpp)
-add_library(aos file1-aosd.cpp file2-aos.cpp)
-
-add_executable(fluidaos fluidaos.cpp)
-target_link_libraries(fluidaos common fluidaos)
-add_executable(fluidsoa fluidsoa.cpp)
-target_link_libraries(fluidsoa common fluidsoa)
-\end{lstlisting}
+\lstinputlisting[title={Main CMakeLists.txt},frame=single]{int/cmake-general.cmake}
 
 The CMake configuration file for directory \cppid{sim} shall include the
 following options:
 
-\begin{lstlisting}[title={Library sim CmakeLists.txt},frame=single]
-add_library(sim file1.cpp file2.cpp file3.cpp)
-target_include_directories(sim PUBLIC ..)
-\end{lstlisting}
+\lstinputlisting[title={CMakeLists.txt for sim library},frame=single]{int/sim.cmake}
 
 The CMake configuration file for directory \cppid{fluid} shall include the
 following options:
 
-\begin{lstlisting}[title={Program fluid CmakeLists.txt},frame=single]
-add_executable(fluid fluid.cpp)
-target_link_libraries(fluid sim)
-target_include_directories(fluid PUBLIC ../common)
-\end{lstlisting}
+\lstinputlisting[title={CMakeLists.txt for fluid program},frame=single]{int/fluid.cmake}
 
-This rules are an example. 
+These rules are an example. 
 
 Keep in mind that all evaluations shall be performed with the compiler optimizations
 enabled with CMake option
@@ -143,6 +116,11 @@ You are recommended, but not required, to make use of GoogleTest
 
 In any case, evidence of enough unit tests shall be included in the
 submission.
+
+In the case you use GoogleTest as a unit testing framework, below you will
+find an example CMake file:
+
+\lstinputlisting[title={CMakeLists.txt for unit tests},frame=single]{int/gtest.cmake}
 
 \subsubsection{Use of AI tools}
 
