@@ -10,12 +10,12 @@ Se realizan los siguientes pasos:
 \end{enumerate}
 
 \paragraph{Iniciación de densidades y aceleraciones}
-Durante este paso se da un valor inicial a la densidad ($\delta_i$)
+Durante este paso se da un valor inicial a la densidad ($\rho_i$)
 y el vector aceleración ($\vec{a_i}$) para cada partícula.
 
 La densidad se inicia a \cppid{0}.
 \[
-\delta_i = 0
+\rho_i = 0
 \]
 
 El vector aceleración se inicia al valor de la \textgood{aceleración externa}.
@@ -72,7 +72,7 @@ Si las dos partículas están suficientemente cerca
 & \Delta \vec{a}_{ij} = 
   \frac{
     (\vec{p_i} - \vec{p_j}) \cdot \dfrac{15}{\pi \cdot h^6} \cdot m \cdot 
-    \dfrac{(h - dist_{ij})^2}{dist_{ij}^2} \cdot (\rho_i + \rho_j - \rho) +
+    \dfrac{(h - dist_{ij})^2}{dist_{ij}} \cdot (\rho_i + \rho_j - \rho) +
     (\vec{v_j} - \vec{v_i}) \cdot \dfrac{45}{\pi \cdot h^6} \cdot \mu \cdot m
   }{
     \rho_i \cdot \rho_j    
