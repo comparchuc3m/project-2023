@@ -1,6 +1,9 @@
 EN_PROJ_BASE=proj
 EN_PROJ_DIR=$(EN_DIR)/$(EN_PROJ_BASE)
-EN_PROJ_PARTS=$(EN_PROJ_DIR)/*.tex
+EN_PROJ_PARTS= \
+  $(EN_PROJ_DIR)/*.tex \
+  int/*.cmake \
+  int/*.tkz
 
 EN_PROJ_PDF=en-$(EN_PROJ_BASE).pdf
 
