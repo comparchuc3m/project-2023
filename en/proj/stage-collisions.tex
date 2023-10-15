@@ -40,8 +40,8 @@ considering the \textmark{stiffness collisions} ($c_s$) and \textmark{damping}
 \[
 a_x = 
 \begin{cases}
-  a_x + c_s \cdot \Delta x - d_v \cdot v_x & \text{if  } c_x = 0\\
-  a_x - c_s \cdot \Delta x + d_v \cdot v_x & \text{if  } c_x = n_x-1\\
+  a_x + ( c_s \cdot \Delta x - d_v \cdot v_x ) & \text{if  } c_x = 0\\
+  a_x - ( c_s \cdot \Delta x + d_v \cdot v_x ) & \text{if  } c_x = n_x-1\\
 \end{cases}
 \]
 
@@ -72,8 +72,8 @@ considering the \textmark{stiffness collisions} ($c_s$) and \textmark{damping}
 \[
 a_y = 
 \begin{cases}
-  a_y + c_s \cdot \Delta y - d_v \cdot v_y & \text{if  } c_y = 0\\
-  a_y - c_s \cdot \Delta y + d_v \cdot v_y & \text{if  } c_y = n_y-1\\
+  a_y + ( c_s \cdot \Delta y - d_v \cdot v_y )  & \text{if  } c_y = 0\\
+  a_y - ( c_s \cdot \Delta y + d_v \cdot v_y ) & \text{if  } c_y = n_y-1\\
 \end{cases}
 \]
 
@@ -104,8 +104,8 @@ considering the \textmark{stiffness collisions} ($c_s$) and \textmark{damping}
 \[
 a_z = 
 \begin{cases}
-  a_z + c_s \cdot \Delta z - d_v \cdot v_z & \text{if  } c_z = 0\\
-  a_z - c_s \cdot \Delta z + d_v \cdot v_z & \text{if  } c_z = n_z-1\\
+  a_z + ( c_s \cdot \Delta z - d_v \cdot v_z ) & \text{if  } c_z = 0\\
+  a_z - ( c_s \cdot \Delta z + d_v \cdot v_z ) & \text{if  } c_z = n_z-1\\
 \end{cases}
 \]
 
